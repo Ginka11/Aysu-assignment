@@ -1,1 +1,224 @@
-# Aysu-assignment
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Aysu</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    :root { --max: 900px; --border: 1px solid #e6e6e6; }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      line-height: 1.6;
+      background: #fff;
+      color: #111;
+    }
+
+    .nav {
+      position: sticky;
+      top: 0;
+      background: #000814;
+      border-bottom: var(--border);
+      display: flex;
+      gap: 16px;
+      align-items: center;
+      padding: 10px 16px;
+      z-index: 1000;
+    }
+    .nav .brand {
+      font-weight: 700;
+      text-decoration: none;
+      color: #fff;
+      margin-right: auto;
+    }
+    .nav nav a {
+      text-decoration: none;
+      color: #fff;
+      padding: 8px 10px;
+      border-radius: 8px;
+    }
+    .nav nav a.active, .nav nav a:hover {
+      background: rgba(255,255,255,0.15);
+    }
+
+    .bold-big {
+      font-weight: 900;
+      font-size: 32px;
+      letter-spacing: 0.5px;
+      color: #023e8a;
+      display: block;
+      margin: 12px 0;
+    }
+
+    .container { max-width: var(--max); margin: 24px auto; padding: 0 16px; }
+    h1 { margin-top: 0; }
+    .footer { border-top: var(--border); padding: 16px; text-align: center; color: #666; }
+
+    section { display: none; }
+    section.active { display: block; }
+
+    .gallery { display: grid; gap: 20px; }
+    .gallery .item {
+      display: grid;
+      grid-template-columns: 540px 1fr;
+      gap: 16px;
+      align-items: center;
+      padding: 14px;
+      border: 1px solid #eee;
+      border-radius: 12px;
+      background: #fff;
+    }
+    .gallery .item img {
+      width: 100%;
+      height: 360px;
+      object-fit: cover;
+      border-radius: 10px;
+    }
+    .gallery .item h3 { margin: 0 0 6px 0; }
+    .gallery .item p { margin: 0; color: #555; }
+
+    .reveal {
+      opacity: 0;
+      transform: translateX(80px);
+      transition: all 1.2s ease;
+    }
+    .reveal.in { opacity: 1; transform: translateX(0); }
+    .reveal.left { transform: translateX(-80px); }
+
+    #presentation-content, #references-content {
+      white-space: pre-wrap;
+      line-height: 1.7;
+    }
+  </style>
+</head>
+<body>
+  <header class="nav">
+    <a class="brand" href="#">Aysu</a>
+    <nav>
+      <a href="#main" id="link-main">Main Menu</a>
+      <a href="#presentation" id="link-presentation">Presentation</a>
+      <a href="#references" id="link-references">References</a>
+    </nav>
+  </header>
+
+  <main class="container">
+    <section id="main" class="active">
+      <h1>Main Topics</h1>
+      <div class="gallery">
+        <article class="item reveal">
+          <img src="https://img.freepik.com/free-photo/cyber-security-concept-digital-art_23-2151637760.jpg?w=360" alt="cyber_1">
+          <div>
+            <h3>Security Challenges</h3>
+            <p style="color:#c9ada7;">Analyzes key issues and their impact on confidentiality, integrity, and availability.</p>
+          </div>
+        </article>
+        <article class="item reveal">
+          <img src="https://media.istockphoto.com/id/584210406/photo/businessman-pointing-at-risk-management-concept-on-screen.jpg?s=612x612&w=0&k=20&c=ZE5G5MHPqUxl83D3TQqJochJf1A2Uk_qkToRDU81dBw=" alt="cyber_2">
+          <div>
+            <h3>Risk Mitigation Strategies</h3>
+            <p style="color:#c9ada7;">Explores preventive measures and best practices to reduce information security risks.</p>
+          </div>
+        </article>
+        <article class="item reveal">
+          <img src="https://cdn.mos.cms.futurecdn.net/uFW9gi4NuStyNXfDZrUNf9.jpg" alt="cyber_3">
+          <div>
+            <h3>Future Security Outlook</h3>
+            <p style="color:#c9ada7;">Examines emerging threats and trends shaping stronger information security strategies.</p>
+          </div>
+        </article>
+        <article class="item reveal">
+          <img src="https://cdn.prod.website-files.com/64945c3b6498f55f8967ddbd/66cc4fa3236d6014094cfd10_cyber-security-awareness.webp" alt="cyber_4">
+          <div>
+            <h3>Employee Awareness</h3>
+            <p style="color:#c9ada7;">Evaluates training’s impact on security and suggests ways to build effective programs.</p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section id="presentation">
+      <h1>Presentation</h1>
+      <div id="presentation-content">Loading...</div>
+    </section>
+
+    <section id="references">
+      <h1>References</h1>
+      <div id="references-content">Loading...</div>
+    </section>
+  </main>
+
+  <footer class="footer">© 2025</footer>
+
+  <script>
+    const sections = document.querySelectorAll("main section");
+    const links = document.querySelectorAll("header nav a");
+
+    function showSection(hash) {
+      const id = hash ? hash.substring(1) : "main";
+      sections.forEach(s => s.classList.toggle("active", s.id === id));
+      links.forEach(a => a.classList.toggle("active", a.getAttribute("href") === "#" + id));
+    }
+
+    window.addEventListener("hashchange", () => showSection(location.hash));
+    showSection(location.hash);
+  </script>
+
+  <script>
+    const image = document.createElement("img");
+    image.src = "https://i.postimg.cc/yYFSrpZ2/g.png";
+    image.alt = "Logo";
+    image.style.width = "80px";
+    image.style.height = "80px";
+    image.style.borderRadius = "50%";
+    image.style.objectFit = "cover";
+    const header = document.querySelector("header");
+    header.prepend(image);
+  </script>
+
+  <script>
+    const items = document.querySelectorAll('.reveal');
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('in'); });
+    }, { threshold: 0.15 });
+    items.forEach(el => io.observe(el));
+  </script>
+
+  <script>
+  fetch("https://gistcdn.githack.com/Ginka11/930426765b737e0b1fd2b7a929f0fdf8/raw/gistfile1.txt")
+    .then(r => r.text())
+    .then(data => {
+      const emphasizeSentences = [
+        "Introduction",
+        "Body 1 – Information Security Challenges",
+        "Body 2 – Prevention and Mitigation Strategies",
+        "Body 3 – Future Implications and the Evolving Security Landscape",
+        "Body 4 – Employee Training and Awareness",
+        "Conclusion"
+      ];
+      emphasizeSentences.forEach(sentence => {
+        const regex = new RegExp(sentence, "gi");
+        data = data.replace(regex, `<span class='bold-big'>${sentence}</span>`);
+      });
+      document.getElementById("presentation-content").innerHTML = data.replace(/\n/g, "<br>");
+    })
+    .catch(e => {
+      document.getElementById("presentation-content").innerText = "Text could not be loaded: " + e;
+      console.error(e);
+    });
+  </script>
+
+  <script>
+  fetch("https://gistcdn.githack.com/Ginka11/34e4942a28b5707c59fb729cad83e014/raw/gistfile1.txt")
+    .then(r => r.text())
+    .then(data => {
+      document.getElementById("references-content").innerHTML = data.replace(/\n/g, "<br>");
+    })
+    .catch(e => {
+      document.getElementById("references-content").innerText = "Text could not be loaded: " + e;
+      console.error(e);
+    });
+  </script>
+
+</body>
+</html>
